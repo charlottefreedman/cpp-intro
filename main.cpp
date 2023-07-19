@@ -1,6 +1,12 @@
 #include <iostream>
+#include "Point.hpp"
+#include "Line.hpp"
+#include "Triangle.hpp"
+#include "Polygon.hpp"
+#include "AUV.hpp"
 #include "math.h"
 #include <vector>
+#include <array>
 
 int add(int x, int y){
   return x + y;
@@ -44,75 +50,6 @@ int area(int radius)
 }
 void print() {
   std::cout << "The area of the circle with a radius of " << radius << " is " << area(radius) << std::endl;
-  }
-};
-
-class Point{
-  public: 
-    double x;
-    double y;
-
-  double distance_to_origin(double x, double y){
-    return sqrt(pow((x - 0), 2) + pow((y - 0), 2));
-  }
-
-  double distance_to_point(Point p){
-    return sqrt(pow((x - p.x), 2) + pow((y - p.y), 2));
-  }
-};
-
-class Line{
-  public:
-    Point p1;
-    Point p2;
-
-  double length(Point p1, Point p2){
-    return sqrt(pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2));
-  }
-
-  double distance_to_point(Point p1, Point p2, Point p){
-    return (abs(((p2.x-p1.x)*(p1.y, p.y)) - ((p1.x - p.x)*(p2.y - p1.y))))/ (sqrt(pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2)));
-  }
-  
-};
-
-class Triangle{
-  public:
-    Point p1;
-    Point p2;
-    Point p3;
-
-  double area(Point p1, Point p2, Point p3){
-    Line l;
-    double base = l.length(p2, p3);
-    double height = l.distance_to_point(p2, p3, p1);
-    return divide(multiply(base, height), 2);
-  }
-};
-
-class Polygon{
-  public:
-    std::vector<Point> p;
-
-  double area(){
-    int amt_of_points = p.size();
-    double area = 0.0;
-    for (int i = 0; i < amt_of_points -2 ; i++){
-      Triangle t;
-      area += t.area(p[0],p[i], p[i+1]);
-    }
-    return area;
-  }
-
-  double perimeter(){
-    int amt_of_points = p.size();
-    double perimeter = 0.0;
-    Line ll;
-    for (int i = 0; i < amt_of_points; i++){
-      perimeter += ll.length(p[i], p[i+1]);
-    }
-    perimeter += ll.length(p[amt_of_points - 1], p[0]);
-    return perimeter;
   }
 };
 
